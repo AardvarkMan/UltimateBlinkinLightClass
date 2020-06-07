@@ -26,7 +26,6 @@ void FadeInOut(byte red, byte green, byte blue){
     g = (k/256.0)*green;
     b = (k/256.0)*blue;
     setAll(r,g,b);
-    showStrip();
   }
      
   for(int k = 255; k >= 0; k=k-2) {
@@ -34,7 +33,6 @@ void FadeInOut(byte red, byte green, byte blue){
     g = (k/256.0)*green;
     b = (k/256.0)*blue;
     setAll(r,g,b);
-    showStrip();
   }
 }
 

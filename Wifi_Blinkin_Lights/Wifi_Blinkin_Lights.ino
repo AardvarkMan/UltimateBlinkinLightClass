@@ -7,7 +7,7 @@
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "AbeBlinkin";
 // -- Initial password to connect to the Thing, when it creates an own Access Point.
-const char wifiInitialApPassword[] = "smrtTHNG8266";
+const char wifiInitialApPassword[] = "password";
 
 DNSServer dnsServer;
 String header;
@@ -17,8 +17,9 @@ WebServer server(80);
 
 // -- Callback method declarations.
 void wifiConnected();
+#define CONFIG_VERSION "init"
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
+IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 
 //---Variables for FASTLED Control ------------------------------------------------------------------------------
 #define LED_PIN     1
@@ -53,6 +54,7 @@ void setup() {
 
   // -- Initializing the configuration.
   iotWebConf.setStatusPin(STATUS_PIN);
+  iotWebConf.setConfigPin(3);
   iotWebConf.setWifiConnectionCallback(&wifiConnected);
   iotWebConf.init();
 
